@@ -7,12 +7,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 lg:p-8">
-                <div class="bg-white bg-gray-800 border-b border-gray-200 border-gray-700">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6 lg:p-8">
+                <div class="bg-white border-b border-gray-700">
 
                     <div class="mb-4">
                         <a href="{{ route('products.create') }}"
-                            class="bg-cyan-500 dark:bg-cyan-700 hover:bg-cyan-600 dark:hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded">
+                            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                             Create
                         </a>
                     </div>
