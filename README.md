@@ -239,11 +239,3 @@ php artisan test
 ## 📝 Licencia
 
 Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
-
-## 🙏 Agradecimientos
-
-- [Laravel](https://laravel.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Jetstream](https://jetstream.laravel.com)
-- [Flowbite](https://flowbite.com)
-- [Livewire](https://livewire.laravel.com)
