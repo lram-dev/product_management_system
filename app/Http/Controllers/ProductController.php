@@ -42,12 +42,26 @@ class ProductController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $product = product::findOrFail($id);
+        return view('products.edit', compact('product'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'modelo' => 'required|string|max:255|min:3',
+            'proveedor' => 'required|string|max:255|min:3',
+            'galeria' => 'required|string|max:255|min:3',
+            'desperdicio' => 'required|numeric|min:0.1',
+            'costo' => 'required|numeric|min:0.1',
+        ]);
+
+        $product = product::findorFail($id);
+
+        $product->update($request->all());
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product created successfully.');
     }
 
     public function destroy(string $id)
