@@ -15,7 +15,14 @@ Sistema de gestión de productos desarrollado con **Laravel 12**, **Jetstream**,
 
 - **Autenticación**: Sistema de login y registro con Laravel Jetstream (Sanctum)
 - **Gestión de Productos**: CRUD completo de productos
+- **Campos de Productos**:
+    - Modelo (string)
+    - Proveedor (string)
+    - Galería (string)
+    - Desperdicio (numeric)
+    - Costo (numeric)
 - **Interfaz Moderna**: Diseño responsivo con Tailwind CSS v4
+- **Confirmaciones**: Alertify.js para diálogos de confirmación de eliminación
 - **Componentes UI**: Utiliza Flowbite para componentes interactivos
 - **Estilos Tipográficos**: Plugin Tailwind Typography integrado
 
@@ -29,6 +36,7 @@ Sistema de gestión de productos desarrollado con **Laravel 12**, **Jetstream**,
 | Jetstream    | 最新    |
 | Livewire     | 3.x     |
 | Flowbite     | 4.x     |
+| Alertify.js  | 1.x     |
 
 ## 🚀 Instalación
 
@@ -91,7 +99,14 @@ Sistema de gestión de productos desarrollado con **Laravel 12**, **Jetstream**,
     npm install
     ```
 
-8. **Compilar assets**
+8. **Agregar Alertify.js (para diálogos de confirmación)**
+
+    ```bash
+    # Copiar los archivos de Alertify.js a la carpeta public
+    # Los archivos ya están incluidos en public/js y public/css
+    ```
+
+9. **Compilar assets**
     ```bash
     npm run build
     ```
@@ -150,23 +165,26 @@ product-management-system/
 ├── app/
 │   ├── Actions/           # Acciones de Jetstream
 │   ├── Http/
-│   │   └── Controllers/  # Controladores
-│   ├── Models/            # Modelos Eloquent
+│   │   └── Controllers/  # Controladores (ProductController)
+│   ├── Models/            # Modelos Eloquent (Product)
 │   └── Providers/         # Proveedores de servicios
 ├── database/
 │   ├── migrations/        # Migraciones de base de datos
 │   ├── seeders/          # Seeders
 │   └── factories/        # Factories
 ├── resources/
-│   ├── css/              # Estilos (app.css)
-│   ├── js/               # JavaScript
+│   ├── css/              # Estilos (app.css, alertify.min.css)
+│   ├── js/               # JavaScript (alertify.min.js)
 │   └── views/            # Vistas Blade
 │       ├── components/   # Componentes Blade
-│       ├── products/    # Vistas de productos
+│       ├── products/     # Vistas de productos (index, create, edit)
 │       └── auth/        # Vistas de autenticación
 ├── routes/
 │   ├── web.php          # Rutas web
 │   └── api.php          # Rutas API
+├── public/
+│   ├── css/             # CSS público (alertify.min.css)
+│   └── js/              # JS público (alertify.min.js)
 ├── config/              # Archivos de configuración
 ├── vite.config.js       # Configuración de Vite
 └── tailwind.config.js  # Configuración de Tailwind (v3 legacy)
