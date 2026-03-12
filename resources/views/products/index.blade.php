@@ -12,7 +12,7 @@
                             href="{{ route('products.create') }}"
                             class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
                         >
-                            Create
+                            Crear Producto
                         </a>
                     </div>
                     <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
@@ -45,7 +45,7 @@
                                                     onclick="confirmDelete('{{ $product->id}}')"
                                                     class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
                                                 >
-                                                    Delete
+                                                    Eliminar
                                                 </button>
                                             </div>
                                         </td>
@@ -60,38 +60,28 @@
 
 <script>
     function confirmDelete(productId) {
-        // Configuramos Alertify para que se vea más limpio
-        alertify
-            .confirm(
-                "Confirmar Eliminación", // Título
-                "¿Estás seguro de que deseas eliminar este producto?", // Mensaje
-                function () {
-                    // SI - El usuario confirmó
-                    let form = document.createElement("form");
-                    form.method = "POST";
-                    form.action = `/products/${productId}`;
+        alertify.confirm(
+            "¿Estás seguro?",
+            "Esta acción eliminará el producto de forma permanente.",
+            function () {
+                let form = document.createElement("form");
+                form.method = "POST";
+                // Usamos la ruta de Laravel directamente si prefieres
+                form.action = `/products/${productId}`;
 
-                    // Importante: Laravel no entiende @csrf dentro de JS puro si no es un archivo Blade.
-                    // Es mejor usar el token directamente del meta tag.
-                    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+                // Aquí es donde entra el @csrf
+                // Lo envolvemos en comillas para que Blade lo renderice como HTML
+                form.innerHTML = `
+                        {!! csrf_field() !!}
+                        @method('DELETE')
+                    `;
 
-                    form.innerHTML = `
-                    <input type="hidden" name="_token" value="${csrfToken}">
-                    <input type="hidden" name="_method" value="DELETE">
-                `;
-
-                    document.body.appendChild(form);
-                    form.submit();
-                },
-                function () {
-                    // NO - El usuario canceló o cerró la ventana
-                    // Solo mostramos el error una vez y dejamos que Alertify cierre la caja solo
-                    alertify.error("Operación cancelada");
-                },
-            )
-            .set("labels", {
-                ok: "Eliminar",
-                cancel: "Cancelar",
-            }); // Personaliza los textos de los botones
+                document.body.appendChild(form);
+                form.submit();
+            },
+            function () {
+                alertify.error("Cancelado");
+            },
+        );
     }
 </script>
