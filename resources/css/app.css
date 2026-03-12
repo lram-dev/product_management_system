@@ -48,4 +48,22 @@
 @import "flowbite/src/themes/mono";
 */
 
-@plugin "flowbite/plugin";
+
+/* 1. Importar el núcleo de Alertify */
+@import "alertifyjs/build/css/alertify.min.css";
+
+/* 2. Importar el tema (Este es el que activa la manita y colores) */
+@import "alertifyjs/build/css/themes/default.min.css";
+
+/* ... aquí van tus @theme y @plugin de Flowbite que ya teníamos ... */
+
+/* 3. El "Parche" de seguridad para la manita */
+@theme {
+  /* Si por alguna razón el tema no pone la manita, esto lo fuerza */
+  --cursor-alertify-button: pointer;
+}
+
+.alertify .ajs-button, 
+.alertify .ajs-close {
+    cursor: var(--cursor-alertify-button) !important;
+}

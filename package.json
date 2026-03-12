@@ -20,6 +20,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "alertifyjs": "^1.14.0",
         "flowbite": "^4.0.1"
     }
 }
